@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Canvas tokens — single source of truth, aligned with locked design spec */
+:root {
+  /* Backgrounds */
+  --canvas: #ffffff;
+  --canvas-soft: #fafaf7;
+  --bg-marcat-tint: #fff8f3;
+
+  /* Text */
+  --ink-strong: #000000;
+  --ink: #0a0a0a;
+  --text-mute: #6b6b6b;
+
+  /* MarCat (rare accent) */
+  --marcat: #ff6e1e;
+  --marcat-gold: #fba924;
+  --marcat-soft: #fff4eb;
+  --marcat-gradient: linear-gradient(135deg, #ff6e1e 0%, #fba924 100%);
+
+  /* Hairlines */
+  --hairline: #e5e7eb;
+  --hairline-soft: #f0f0f0;
+  --border-marcat: #ff6e1e;
+
+  /* Error clinical red (Section 3 only) */
+  --error: #c64545;
+
+  /* Motion */
+  --ease-marcat: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Legacy aliases — for components still on old token names */
+  --bg-pure: var(--canvas);
+  --bg-alt: var(--canvas-soft);
+  --text-primary: var(--ink-strong);
+  --text-body: var(--ink);
+  --text-secondary: var(--text-mute);
+  --marcat-orange: var(--marcat);
+  --border-default: var(--hairline);
+}
+
+html {
+  background: var(--bg-pure);
+  color: var(--text-primary);
+}
+
+body {
+  background: var(--bg-pure);
+  color: var(--text-primary);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Respect reduced-motion preference — disable all decorative animation */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Utility — MarCat gradient text (logo only) */
+.text-marcat-gradient {
+  background: var(--marcat-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
