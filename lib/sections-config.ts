@@ -129,7 +129,7 @@ const section4: SectionConfig = {
       lines: benefitShifts[name],
       tone: "benefit" as const,
     })),
-    systemBand: "6 PORTALS · 1 PLATFORM · 7 AI ENDPOINTS (MORNING-BRIEF · COPILOT · PHOTO-VERIFY)",
+    systemBand: "FOUR NODES · ONE DATABASE · ONE GRAPH — NOT FOUR APPS BOLTED TOGETHER",
     takeaway: "13 million kiranas. One network.",
   }),
 };
