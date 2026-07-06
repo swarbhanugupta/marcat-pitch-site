@@ -10,56 +10,56 @@ export function SilentSectionAsk() {
         The ask.
       </h1>
       <div className="font-mono text-[13px] md:text-[15px] text-ink-body mb-7">
-        ₹55 lakh pre-seed · ~15-month runway · ~6% dilution
+        Pre-seed · SAFE · 18&ndash;24-month runway
       </div>
 
       <div className="flex flex-row gap-12 items-start">
         <div className="text-center">
           <div className="font-mono text-[32px] md:text-[44px] font-bold tracking-tight text-ink-strong leading-none">
-            ₹20 LAKH
+            ₹75 LAKH
           </div>
           <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-marcat-orange mt-2">
-            SISFS GRANT · NON-DILUTIVE
+            TARGET
           </div>
         </div>
 
         <div className="text-center">
           <div className="font-mono text-[32px] md:text-[44px] font-bold tracking-tight text-ink-strong leading-none">
-            ₹35 LAKH
+            ₹1 CRORE
           </div>
           <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-marcat-orange mt-2">
-            ANGEL SAFE · ₹6 Cr CAP
+            STRETCH · ₹7 Cr CAP
           </div>
         </div>
       </div>
 
-      {/* Use of funds — 24-month runway to the seed-unlock milestone */}
-      <div className="mt-8 max-w-[720px] w-full">
+      {/* Milestone + use of funds */}
+      <div className="mt-8 max-w-[780px] w-full">
         <div className="border-t border-line pt-3">
           <div className="font-mono text-[10px] uppercase tracking-widest text-ink-muted mb-2 text-center">
-            MILESTONE: SELL-OUT LOOP LIVE · FIRST 10–15 PAYING STORES · ENGINEER HIRED
+            MILESTONE: REPEATABLE PAID RETAILER ACQUISITION · SELL-OUT LOOP LIVE · EARLY MONETIZATION
           </div>
           <div className="grid grid-cols-3 gap-4 text-center font-mono text-[11px]">
             <div>
               <div className="text-ink-strong font-semibold">TEAM</div>
-              <div className="text-ink-muted mt-1">engineer + field rep</div>
+              <div className="text-ink-muted mt-1">engineer + reps + CS</div>
             </div>
             <div>
               <div className="text-ink-strong font-semibold">GTM</div>
-              <div className="text-ink-muted mt-1">founder-led field</div>
+              <div className="text-ink-muted mt-1">retailer acquisition</div>
             </div>
             <div>
-              <div className="text-ink-strong font-semibold">CLOUD + AI + OPS</div>
-              <div className="text-ink-muted mt-1">15 months</div>
+              <div className="text-ink-strong font-semibold">PRODUCT + AI + CLOUD</div>
+              <div className="text-ink-muted mt-1">18&ndash;24 months</div>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="mt-6 max-w-[620px] text-center">
+      <div className="mt-6 max-w-[660px] text-center">
         <p className="text-[13px] md:text-[15px] text-ink-body italic leading-relaxed">
-          Already live at the supermarket lab since 27 April 2026.<br />
-          This funds the network&rsquo;s first real edge — not survival.
+          Self-sufficient raise — grants treated as upside, not counted.<br />
+          Already live at the lab; this funds repeatable retailer adoption.
         </p>
       </div>
     </div>

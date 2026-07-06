@@ -296,7 +296,7 @@ const section7: SectionConfig = {
       tone: "benefit" as const,
     })),
     takeaway: "Every new node has a reason to onboard the next. The graph pulls itself tight.",
-    bottomBand: "Beachhead: 1 store → 5 founder-led → 10–15 paid across Ahmedabad (15 mo) — proof of repeatability before city-scale",
+    bottomBand: "Beachhead: 1 store → 5 founder-led → 15–25 paid across Ahmedabad (18–24 mo) — proof of repeatability before city-scale",
   }),
 };
 

@@ -171,47 +171,47 @@ function MobileAsk() {
   return (
     <div className="space-y-6 my-4">
       <div className="text-center font-mono text-[12px] text-ink-body mb-1">
-        ₹55 lakh · ~15-mo · ~6% dilution
+        Pre-seed · SAFE · 18–24-mo runway
       </div>
       <div className="flex justify-around items-start gap-4">
         <div className="text-center">
           <div className="font-mono text-[28px] font-bold tracking-tight text-ink-strong leading-none">
-            ₹20L
+            ₹75L
           </div>
           <div className="font-mono text-[10px] uppercase tracking-widest text-marcat-orange mt-1">
-            SISFS GRANT · NON-DILUTIVE
+            TARGET
           </div>
         </div>
         <div className="text-center">
           <div className="font-mono text-[28px] font-bold tracking-tight text-ink-strong leading-none">
-            ₹35L
+            ₹1 Cr
           </div>
           <div className="font-mono text-[10px] uppercase tracking-widest text-marcat-orange mt-1">
-            ANGEL SAFE · ₹6 Cr CAP
+            STRETCH · ₹7 Cr CAP
           </div>
         </div>
       </div>
       <div className="border-t border-line pt-4">
         <div className="font-mono text-[10px] uppercase tracking-widest text-ink-muted mb-3 text-center">
-          MILESTONE: SELL-OUT LOOP LIVE · 10–15 PAYING STORES · ENGINEER HIRED
+          MILESTONE: SELL-OUT LOOP LIVE · REPEATABLE PAID ACQUISITION · EARLY MONETIZATION
         </div>
         <div className="grid grid-cols-3 gap-2 text-center font-mono text-[11px]">
           <div>
             <div className="text-ink-strong font-bold">TEAM</div>
-            <div className="text-ink-muted mt-1">engineer + rep</div>
+            <div className="text-ink-muted mt-1">eng + reps + CS</div>
           </div>
           <div>
             <div className="text-ink-strong font-bold">GTM</div>
-            <div className="text-ink-muted mt-1">founder field</div>
+            <div className="text-ink-muted mt-1">retailer acq</div>
           </div>
           <div>
-            <div className="text-ink-strong font-bold">CLOUD + AI + OPS</div>
-            <div className="text-ink-muted mt-1">15 mo</div>
+            <div className="text-ink-strong font-bold">PRODUCT + AI</div>
+            <div className="text-ink-muted mt-1">18–24 mo</div>
           </div>
         </div>
       </div>
       <p className="text-[13px] text-ink-body italic leading-relaxed text-center px-2">
-        Already live at the supermarket lab since 27 April 2026. This funds the network&rsquo;s first real edge — not survival.
+        Self-sufficient raise — grants are upside, not counted. Already live at the lab; this funds repeatable retailer adoption.
       </p>
     </div>
   );
