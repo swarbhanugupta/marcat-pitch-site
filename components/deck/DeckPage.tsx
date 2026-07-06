@@ -2,6 +2,7 @@
 
 import { useDeck } from "@/lib/deck-state";
 import { SECTIONS } from "@/lib/sections-config";
+import { usePitchStats, withLiveProof } from "@/lib/pitchStats";
 import { PersistentChipBoard } from "@/components/chipboard/PersistentChipBoard";
 import { SilentSectionTeam } from "./SilentSectionTeam";
 import { SilentSectionAsk } from "./SilentSectionAsk";
@@ -21,7 +22,8 @@ export function DeckPage() {
 function DesktopDeck() {
   const { currentSection, subStep, tubeMode, next, prev } = useDeck();
   const cfg = SECTIONS[currentSection];
-  const state = cfg.getState(subStep);
+  const liveStats = usePitchStats();
+  const state = withLiveProof(cfg.getState(subStep), liveStats);
   const sectionKey = `${cfg.name}-${subStep}`;
 
   const isTeam = cfg.name === "team";

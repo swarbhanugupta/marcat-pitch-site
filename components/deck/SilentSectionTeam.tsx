@@ -6,7 +6,7 @@ export function SilentSectionTeam() {
   return (
     <div className="absolute inset-0 flex flex-col items-center justify-center px-8 select-none pointer-events-none">
       <div className="font-mono text-[12px] uppercase tracking-[0.18em] text-ink-muted mb-2">
-        09 · TEAM
+        12 · TEAM
       </div>
       <h1 className="font-sans font-semibold text-[32px] md:text-[36px] leading-[1.05] tracking-[-0.02em] text-ink-strong mb-6 pointer-events-none">
         The team.
@@ -42,7 +42,7 @@ export function SilentSectionTeam() {
           </div>
           <div className="text-[11px] text-ink-muted italic mt-2 max-w-[280px]">
             Built a supermarket from scratch — then built MarCat to run it.
-            Sole engineer: 4 portals · 311 routes · 7 AI endpoints.
+            Sole engineer: 6 portals · 7 AI endpoints.
           </div>
         </div>
 
@@ -82,7 +82,7 @@ export function SilentSectionTeam() {
       {/* First hires — single inline line */}
       <div className="mt-6 pointer-events-none">
         <div className="font-mono text-[11px] uppercase tracking-widest text-ink-muted text-center">
-          First hires · 5 stores: field rep + dev + CS  ·  50 stores: sales scale-up
+          First hires (this round): 2 field reps + engineer + CS  ·  50+ stores: sales scale-up
         </div>
       </div>
 

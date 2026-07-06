@@ -21,5 +21,5 @@ export function useDeck() {
   return ctx;
 }
 
-export const TOTAL_SECTIONS = 11;
+export const TOTAL_SECTIONS = 14;
 export const TUBE_BURST_MS = 7500;

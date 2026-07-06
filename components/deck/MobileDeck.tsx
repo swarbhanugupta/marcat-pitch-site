@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { SECTIONS } from "@/lib/sections-config";
+import { usePitchStats, withLiveProof } from "@/lib/pitchStats";
 import { MobileContentCard } from "./MobileContentCard";
 import { PersistentChipBoard } from "@/components/chipboard/PersistentChipBoard";
 import { DEFAULT_BOARD_STATE } from "@/lib/tokens";
@@ -17,10 +18,11 @@ const allLive: Record<ChipName, ChipState> = {
  * dependency except the hero). Uses HTML for crisp text rendering.
  */
 export function MobileDeck() {
+  const liveStats = usePitchStats();
   return (
     <main className="min-h-screen w-full bg-canvas-white">
       {SECTIONS.map((cfg, idx) => {
-        const state = cfg.getState(0);
+        const state = withLiveProof(cfg.getState(0), liveStats);
         return (
           <section
             key={cfg.name}
@@ -133,7 +135,7 @@ function MobileTeam() {
           Earlier: Bizom · Happay · Qoruz · 55+ B2B closes
         </div>
         <div className="text-[11px] text-ink-muted italic mt-2 px-4">
-          Built a supermarket from scratch — then built MarCat to run it. Sole engineer: 4 portals · 311 routes · 7 AI endpoints.
+          Built a supermarket from scratch — then built MarCat to run it. Sole engineer: 6 portals · 7 AI endpoints.
         </div>
       </div>
       <div className="text-center">
@@ -159,7 +161,7 @@ function MobileTeam() {
         </div>
       </div>
       <div className="font-mono text-[10px] uppercase tracking-widest text-ink-muted text-center pt-4 border-t border-line">
-        First hires · 5 stores: field rep + dev + CS  ·  50 stores: sales scale-up
+        First hires (this round): 2 field reps + engineer + CS  ·  50+ stores: sales scale-up
       </div>
     </div>
   );
@@ -168,45 +170,48 @@ function MobileTeam() {
 function MobileAsk() {
   return (
     <div className="space-y-6 my-4">
+      <div className="text-center font-mono text-[12px] text-ink-body mb-1">
+        ₹1.2 crore pre-seed · 24-month runway
+      </div>
       <div className="flex justify-around items-start gap-4">
         <div className="text-center">
           <div className="font-mono text-[28px] font-bold tracking-tight text-ink-strong leading-none">
             ₹20L
           </div>
           <div className="font-mono text-[10px] uppercase tracking-widest text-marcat-orange mt-1">
-            SISFS GRANT
+            SISFS GRANT · NON-DILUTIVE
           </div>
         </div>
         <div className="text-center">
           <div className="font-mono text-[28px] font-bold tracking-tight text-ink-strong leading-none">
-            ₹50L
+            ₹1 Cr
           </div>
           <div className="font-mono text-[10px] uppercase tracking-widest text-marcat-orange mt-1">
-            INCUBATOR CONVERTIBLE
+            SAFE · ₹9–10 Cr CAP
           </div>
         </div>
       </div>
       <div className="border-t border-line pt-4">
         <div className="font-mono text-[10px] uppercase tracking-widest text-ink-muted mb-3 text-center">
-          18-MONTH RUNWAY · MILESTONE: 15 PAYING STORES ACROSS AHMEDABAD
+          MILESTONE: SELL-OUT LOOP LIVE · 30–40 PAYING STORES · FIRST BRAND PILOT
         </div>
         <div className="grid grid-cols-3 gap-2 text-center font-mono text-[11px]">
           <div>
-            <div className="text-ink-strong font-bold">FIELD REP</div>
-            <div className="text-ink-muted mt-1">18 mo</div>
+            <div className="text-ink-strong font-bold">TEAM</div>
+            <div className="text-ink-muted mt-1">1 eng + 2 reps</div>
           </div>
           <div>
-            <div className="text-ink-strong font-bold">ENG HIRE</div>
-            <div className="text-ink-muted mt-1">12 mo</div>
+            <div className="text-ink-strong font-bold">GTM</div>
+            <div className="text-ink-muted mt-1">founder field</div>
           </div>
           <div>
-            <div className="text-ink-strong font-bold">CLOUD + OPS</div>
-            <div className="text-ink-muted mt-1">18 mo</div>
+            <div className="text-ink-strong font-bold">CLOUD + AI + OPS</div>
+            <div className="text-ink-muted mt-1">24 mo</div>
           </div>
         </div>
       </div>
       <p className="text-[13px] text-ink-body italic leading-relaxed text-center px-2">
-        Already live at the supermarket lab since 27 April 2026. Funds acceleration, not survival.
+        Already live at the supermarket lab since 27 April 2026. This funds the network&rsquo;s first real edge — not survival.
       </p>
     </div>
   );
