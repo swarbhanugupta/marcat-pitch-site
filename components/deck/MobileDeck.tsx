@@ -171,7 +171,7 @@ function MobileAsk() {
   return (
     <div className="space-y-6 my-4">
       <div className="text-center font-mono text-[12px] text-ink-body mb-1">
-        ₹1.2 crore pre-seed · 24-month runway
+        ₹55 lakh · ~15-mo · ~6% dilution
       </div>
       <div className="flex justify-around items-start gap-4">
         <div className="text-center">
@@ -184,21 +184,21 @@ function MobileAsk() {
         </div>
         <div className="text-center">
           <div className="font-mono text-[28px] font-bold tracking-tight text-ink-strong leading-none">
-            ₹1 Cr
+            ₹35L
           </div>
           <div className="font-mono text-[10px] uppercase tracking-widest text-marcat-orange mt-1">
-            SAFE · ₹9–10 Cr CAP
+            ANGEL SAFE · ₹6 Cr CAP
           </div>
         </div>
       </div>
       <div className="border-t border-line pt-4">
         <div className="font-mono text-[10px] uppercase tracking-widest text-ink-muted mb-3 text-center">
-          MILESTONE: SELL-OUT LOOP LIVE · 30–40 PAYING STORES · FIRST BRAND PILOT
+          MILESTONE: SELL-OUT LOOP LIVE · 10–15 PAYING STORES · ENGINEER HIRED
         </div>
         <div className="grid grid-cols-3 gap-2 text-center font-mono text-[11px]">
           <div>
             <div className="text-ink-strong font-bold">TEAM</div>
-            <div className="text-ink-muted mt-1">1 eng + 2 reps</div>
+            <div className="text-ink-muted mt-1">engineer + rep</div>
           </div>
           <div>
             <div className="text-ink-strong font-bold">GTM</div>
@@ -206,7 +206,7 @@ function MobileAsk() {
           </div>
           <div>
             <div className="text-ink-strong font-bold">CLOUD + AI + OPS</div>
-            <div className="text-ink-muted mt-1">24 mo</div>
+            <div className="text-ink-muted mt-1">15 mo</div>
           </div>
         </div>
       </div>

@@ -10,7 +10,7 @@ export function SilentSectionAsk() {
         The ask.
       </h1>
       <div className="font-mono text-[13px] md:text-[15px] text-ink-body mb-7">
-        ₹1.2 crore pre-seed · 24-month runway
+        ₹55 lakh pre-seed · ~15-month runway · ~6% dilution
       </div>
 
       <div className="flex flex-row gap-12 items-start">
@@ -25,10 +25,10 @@ export function SilentSectionAsk() {
 
         <div className="text-center">
           <div className="font-mono text-[32px] md:text-[44px] font-bold tracking-tight text-ink-strong leading-none">
-            ₹1 CRORE
+            ₹35 LAKH
           </div>
           <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-marcat-orange mt-2">
-            SAFE · ₹9–10 Cr CAP
+            ANGEL SAFE · ₹6 Cr CAP
           </div>
         </div>
       </div>
@@ -37,12 +37,12 @@ export function SilentSectionAsk() {
       <div className="mt-8 max-w-[720px] w-full">
         <div className="border-t border-line pt-3">
           <div className="font-mono text-[10px] uppercase tracking-widest text-ink-muted mb-2 text-center">
-            MILESTONE: SELL-OUT LOOP LIVE ON REAL DATA · 30–40 PAYING STORES · FIRST BRAND PILOT
+            MILESTONE: SELL-OUT LOOP LIVE · FIRST 10–15 PAYING STORES · ENGINEER HIRED
           </div>
           <div className="grid grid-cols-3 gap-4 text-center font-mono text-[11px]">
             <div>
               <div className="text-ink-strong font-semibold">TEAM</div>
-              <div className="text-ink-muted mt-1">1 eng + 2 field reps</div>
+              <div className="text-ink-muted mt-1">engineer + field rep</div>
             </div>
             <div>
               <div className="text-ink-strong font-semibold">GTM</div>
@@ -50,7 +50,7 @@ export function SilentSectionAsk() {
             </div>
             <div>
               <div className="text-ink-strong font-semibold">CLOUD + AI + OPS</div>
-              <div className="text-ink-muted mt-1">24 months</div>
+              <div className="text-ink-muted mt-1">15 months</div>
             </div>
           </div>
         </div>
