@@ -41,16 +41,16 @@ export function SilentSectionAsk() {
           </div>
           <div className="grid grid-cols-3 gap-4 text-center font-mono text-[11px]">
             <div>
-              <div className="text-ink-strong font-semibold">TEAM</div>
-              <div className="text-ink-muted mt-1">engineer + reps + CS</div>
+              <div className="text-ink-strong font-semibold">ENGINEERING</div>
+              <div className="text-ink-muted mt-1">sell-out loop + reliability</div>
             </div>
             <div>
-              <div className="text-ink-strong font-semibold">GTM</div>
-              <div className="text-ink-muted mt-1">retailer acquisition</div>
+              <div className="text-ink-strong font-semibold">FIELD GTM</div>
+              <div className="text-ink-muted mt-1">repeatable acquisition</div>
             </div>
             <div>
-              <div className="text-ink-strong font-semibold">PRODUCT + AI + CLOUD</div>
-              <div className="text-ink-muted mt-1">18&ndash;24 months</div>
+              <div className="text-ink-strong font-semibold">CUSTOMER SUCCESS</div>
+              <div className="text-ink-muted mt-1">onboard + convert to paid</div>
             </div>
           </div>
         </div>

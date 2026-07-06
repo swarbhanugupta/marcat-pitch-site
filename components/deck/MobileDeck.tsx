@@ -197,16 +197,16 @@ function MobileAsk() {
         </div>
         <div className="grid grid-cols-3 gap-2 text-center font-mono text-[11px]">
           <div>
-            <div className="text-ink-strong font-bold">TEAM</div>
-            <div className="text-ink-muted mt-1">eng + reps + CS</div>
+            <div className="text-ink-strong font-bold">ENGINEERING</div>
+            <div className="text-ink-muted mt-1">sell-out loop</div>
           </div>
           <div>
-            <div className="text-ink-strong font-bold">GTM</div>
-            <div className="text-ink-muted mt-1">retailer acq</div>
+            <div className="text-ink-strong font-bold">FIELD GTM</div>
+            <div className="text-ink-muted mt-1">repeatable acq</div>
           </div>
           <div>
-            <div className="text-ink-strong font-bold">PRODUCT + AI</div>
-            <div className="text-ink-muted mt-1">18–24 mo</div>
+            <div className="text-ink-strong font-bold">CUSTOMER SUCCESS</div>
+            <div className="text-ink-muted mt-1">convert to paid</div>
           </div>
         </div>
       </div>
