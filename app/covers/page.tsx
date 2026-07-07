@@ -32,8 +32,9 @@ function Shell({ n, label, children }: { n: number; label: string; children: Rea
 }
 
 function Board({ vb, states = DEFAULT_BOARD_STATE, w }: { vb: string; states?: Record<ChipName, ChipState>; w: string }) {
+  const [, , vbW, vbH] = vb.split(" ");
   return (
-    <div className={w} style={{ aspectRatio: vb.split(" ").slice(2).map(Number).reduce((a, b) => `${a} / ${b}`) }}>
+    <div className={w} style={{ aspectRatio: `${vbW} / ${vbH}` }}>
       <PersistentChipBoard chipStates={states} tubeMode="flowing" showMarcatLogo viewBoxOverride={vb} />
     </div>
   );
