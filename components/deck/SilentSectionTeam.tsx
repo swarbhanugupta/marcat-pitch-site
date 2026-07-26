@@ -8,9 +8,13 @@ export function SilentSectionTeam() {
       <div className="font-mono text-[12px] uppercase tracking-[0.18em] text-ink-muted mb-2">
         12 · TEAM
       </div>
-      <h1 className="font-sans font-semibold text-[32px] md:text-[36px] leading-[1.05] tracking-[-0.02em] text-ink-strong mb-6 pointer-events-none">
-        The team.
+      <h1 className="font-sans font-semibold text-[32px] md:text-[36px] leading-[1.05] tracking-[-0.02em] text-ink-strong mb-3 pointer-events-none">
+        Why now us?
       </h1>
+      <div className="text-[13px] md:text-[14px] text-ink-body leading-snug text-center max-w-[720px] mb-6 pointer-events-none">
+        Most retail-software founders never ran a store. Most supermarket owners never built software.{" "}
+        <span className="text-ink-strong font-medium">We did both — that&apos;s why MarCat exists.</span>
+      </div>
 
       <div className="grid grid-cols-2 gap-10 max-w-[1000px] w-full pointer-events-none">
         {/* Swarbhanu */}

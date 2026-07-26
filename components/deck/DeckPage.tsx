@@ -45,7 +45,7 @@ function DesktopDeck() {
       {/* TOP ZONE — eyebrow + headline + sub. Trimmed to give chip board
           maximum vertical real estate (chips render larger on Meet 720p). */}
       {!isCustom && (
-        <div className="h-[80px] md:h-[90px] flex-shrink-0 flex flex-col items-center justify-center px-8 pt-1">
+        <div className="flex-shrink-0 flex flex-col items-center justify-center px-8 py-3 min-h-[84px]">
           <AnimatePresence mode="wait">
             <motion.div
               key={`top-${sectionKey}`}
@@ -66,7 +66,7 @@ function DesktopDeck() {
                 </h1>
               )}
               {state.subHeadline && (
-                <p className="font-sans text-[14px] md:text-[16px] leading-[1.3] tracking-[-0.01em] text-ink-body mt-1">
+                <p className="font-sans text-[13px] md:text-[15px] leading-[1.3] tracking-[-0.01em] text-ink-body mt-1.5 max-w-[900px] mx-auto">
                   {state.subHeadline}
                 </p>
               )}
@@ -99,7 +99,7 @@ function DesktopDeck() {
 
       {/* BOTTOM ZONE — takeaway, system band, bottom band (compact) */}
       {!isCustom && (state.takeaway || state.systemBand || state.bottomBand) && (
-        <div className="h-[80px] md:h-[90px] flex-shrink-0 flex flex-col items-center justify-center px-8">
+        <div className="flex-shrink-0 flex flex-col items-center justify-center px-8 py-3 min-h-[84px]">
           <AnimatePresence mode="wait">
             <motion.div
               key={`bot-${sectionKey}`}
@@ -115,7 +115,7 @@ function DesktopDeck() {
                 </div>
               )}
               {state.takeaway && (
-                <p className="font-sans font-semibold text-[20px] md:text-[26px] leading-[1.1] tracking-[-0.015em] text-ink-strong">
+                <p className="font-sans font-semibold text-[17px] md:text-[22px] leading-[1.15] tracking-[-0.015em] text-ink-strong max-w-[1000px] mx-auto">
                   {state.takeaway}
                 </p>
               )}

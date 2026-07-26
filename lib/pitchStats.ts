@@ -52,7 +52,7 @@ export const proofSystemBand = (s: PitchStats): string =>
 // Rebuild the Proof section's live numbers into a rendered SectionState.
 // No-op for every other section (keyed on the Proof eyebrow).
 export function withLiveProof(state: SectionState, stats: PitchStats): SectionState {
-  if (state.eyebrow !== "05 · PROOF") return state;
+  if (state.eyebrow !== "05 · REALITY") return state;
   return {
     ...state,
     contentChips: state.contentChips.map((c) =>
