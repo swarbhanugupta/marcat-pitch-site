@@ -24,11 +24,23 @@ export const metadata: Metadata = {
     url: "https://pitch.marcat.in",
     siteName: "MarCat",
     type: "website",
+    // Explicit static image with a CLEAN url (no ?query) — WhatsApp's crawler
+    // silently drops og:image URLs that carry a query string, which is what
+    // Next's file-convention opengraph-image.png did (…?<hash>).
+    images: [
+      {
+        url: "https://pitch.marcat.in/og.png",
+        width: 1200,
+        height: 630,
+        alt: "MarCat — the transaction layer for Indian FMCG",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "MarCat — The transaction layer for Indian FMCG",
     description: OG_DESC,
+    images: ["https://pitch.marcat.in/og.png"],
   },
 };
 
