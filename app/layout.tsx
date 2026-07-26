@@ -15,11 +15,11 @@ const OG_DESC =
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://pitch.marcat.in"),
-  title: "MarCat — The transaction layer for Indian FMCG",
+  title: "MarCat /Market/ — The transaction layer for Indian FMCG",
   description:
     "One transaction. One shared operational state. Four participants — brand, supplier, retailer, consumer — acting from the same reality. Live at a running supermarket since 27 April 2026.",
   openGraph: {
-    title: "MarCat — The transaction layer for Indian FMCG",
+    title: "MarCat /Market/ — The transaction layer for Indian FMCG",
     description: OG_DESC,
     url: "https://pitch.marcat.in",
     siteName: "MarCat",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "MarCat — The transaction layer for Indian FMCG",
+    title: "MarCat /Market/ — The transaction layer for Indian FMCG",
     description: OG_DESC,
     images: ["https://pitch.marcat.in/og.png"],
   },
