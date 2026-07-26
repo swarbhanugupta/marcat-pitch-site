@@ -10,23 +10,25 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
+const OG_DESC =
+  "One transaction, four operational decisions — synchronized. Live at Banjara, a running supermarket, since 27 April 2026.";
+
 export const metadata: Metadata = {
-  title: "MarCat /Market/ — the Neural Network for Indian FMCG Retail",
+  metadataBase: new URL("https://pitch.marcat.in"),
+  title: "MarCat — The transaction layer for Indian FMCG",
   description:
-    "Four portals on one platform connecting Brand, Supplier, Retailer, Consumer. Live at the supermarket lab since 27 April 2026.",
+    "One transaction. One shared operational state. Four participants — brand, supplier, retailer, consumer — acting from the same reality. Live at a running supermarket since 27 April 2026.",
   openGraph: {
-    title: "MarCat /Market/ — the Neural Network for Indian FMCG Retail",
-    description:
-      "Four portals on one platform. Two live, two built. Live at the supermarket lab since 27 April 2026.",
+    title: "MarCat — The transaction layer for Indian FMCG",
+    description: OG_DESC,
     url: "https://pitch.marcat.in",
     siteName: "MarCat",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "MarCat /Market/ — the Neural Network for Indian FMCG Retail",
-    description:
-      "Four portals on one platform. Live at the supermarket lab since 27 April 2026.",
+    title: "MarCat — The transaction layer for Indian FMCG",
+    description: OG_DESC,
   },
 };
 
