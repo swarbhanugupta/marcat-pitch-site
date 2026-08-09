@@ -7,10 +7,10 @@ export function SilentSectionAsk() {
         13 · ASK
       </div>
       <h1 className="font-sans font-semibold text-[32px] md:text-[36px] leading-[1.05] tracking-[-0.02em] text-ink-strong mb-2">
-        The ask.
+        ₹75L to prove MarCat can repeat beyond one store.
       </h1>
-      <div className="font-mono text-[13px] md:text-[15px] text-ink-body mb-7">
-        Pre-seed · SAFE · 18&ndash;24-month runway
+      <div className="font-sans text-[13px] md:text-[15px] text-ink-body mb-7">
+        One store proves the system. Multiple stores prove the model.
       </div>
 
       <div className="flex flex-row gap-12 items-start">
@@ -36,13 +36,18 @@ export function SilentSectionAsk() {
       {/* Milestone + use of funds */}
       <div className="mt-8 max-w-[780px] w-full">
         <div className="border-t border-line pt-3">
-          <div className="font-mono text-[10px] uppercase tracking-widest text-ink-muted mb-2 text-center">
-            MILESTONE: REPEATABLE PAID RETAILER ACQUISITION · SELL-OUT LOOP LIVE · EARLY MONETIZATION
+          {/* "SELL-OUT LOOP LIVE" removed 2026-08-09 — the brand product has no definition
+              or price (cut from S07 and S11); funding it as a milestone promises delivery. */}
+          <div className="font-mono text-[10px] uppercase tracking-widest text-ink-muted mb-1 text-center">
+            PROOF TARGET · 15–25 PAYING STORES · AHMEDABAD · 24 MONTHS FROM CLOSE
+          </div>
+          <div className="font-mono text-[10px] uppercase tracking-widest text-marcat-orange mb-2 text-center">
+            VALIDATION ROUND · NOT A REVENUE FORECAST
           </div>
           <div className="grid grid-cols-3 gap-4 text-center font-mono text-[11px]">
             <div>
               <div className="text-ink-strong font-semibold">ENGINEERING</div>
-              <div className="text-ink-muted mt-1">sell-out loop + reliability</div>
+              <div className="text-ink-muted mt-1">repeatable deployment + reliability</div>
             </div>
             <div>
               <div className="text-ink-strong font-semibold">FIELD GTM</div>
@@ -59,7 +64,7 @@ export function SilentSectionAsk() {
       <div className="mt-6 max-w-[660px] text-center">
         <p className="text-[13px] md:text-[15px] text-ink-body italic leading-relaxed">
           Self-sufficient raise — grants treated as upside, not counted.<br />
-          Already live at the lab; this funds repeatable retailer adoption.
+          Pre-seed SAFE · 18–24 months runway · ₹7 Cr cap
         </p>
       </div>
     </div>

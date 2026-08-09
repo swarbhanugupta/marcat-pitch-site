@@ -12,12 +12,16 @@ interface ContentChipProps {
   tone: "error" | "benefit" | "neutral";
   pinSide: "top" | "bottom" | "left" | "right";
   pinTips: { x: number; y: number }[];
+  // Index from which lines render as a visually distinct group (orange, slightly
+  // smaller, rule above). Used on the proof slide to separate the live transaction
+  // rows from the aggregate figures above them.
+  accentFrom?: number;
 }
 
 const PIN_W = 4;
 
 export function ContentChip({
-  x, y, width, height, label, lines, tone, pinSide, pinTips,
+  x, y, width, height, label, lines, tone, pinSide, pinTips, accentFrom,
 }: ContentChipProps) {
   const accentColor =
     tone === "error" ? "#C64545" :
@@ -121,23 +125,38 @@ export function ContentChip({
         strokeWidth={1}
       />
 
-      {/* Body lines */}
-      {lines.map((line, i) => (
-        <text
-          key={`line-${i}`}
-          x={x + padX}
-          y={lineStartY + i * lineH}
-          textAnchor="start"
-          dominantBaseline="hanging"
-          fontFamily="var(--font-geist-sans), system-ui, sans-serif"
-          fontSize={30}
-          fontWeight={700}
-          letterSpacing="0"
-          fill={bodyTextColor}
-        >
-          {line}
-        </text>
-      ))}
+      {/* Body lines. Lines at or after `accentFrom` render in the MarCat orange and get a
+          rule above the first of them — without that, five same-weight rows read as one
+          undifferentiated block and the live rows lose all their meaning. */}
+      {typeof accentFrom === "number" && accentFrom > 0 && accentFrom < lines.length && (
+        <line
+          x1={x + padX}
+          x2={x + width - padX}
+          y1={lineStartY + accentFrom * lineH - lineH * 0.22}
+          y2={lineStartY + accentFrom * lineH - lineH * 0.22}
+          stroke="#E5E7EB"
+          strokeWidth={1.5}
+        />
+      )}
+      {lines.map((line, i) => {
+        const isAccent = typeof accentFrom === "number" && i >= accentFrom;
+        return (
+          <text
+            key={`line-${i}`}
+            x={x + padX}
+            y={lineStartY + i * lineH}
+            textAnchor="start"
+            dominantBaseline="hanging"
+            fontFamily="var(--font-geist-sans), system-ui, sans-serif"
+            fontSize={isAccent ? 27 : 30}
+            fontWeight={700}
+            letterSpacing="0"
+            fill={isAccent ? COLORS.marcat : bodyTextColor}
+          >
+            {line}
+          </text>
+        );
+      })}
     </g>
   );
 }

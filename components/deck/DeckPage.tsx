@@ -2,8 +2,14 @@
 
 import { useDeck } from "@/lib/deck-state";
 import { SECTIONS } from "@/lib/sections-config";
-import { usePitchStats, withLiveProof } from "@/lib/pitchStats";
+import { withLiveProof } from "@/lib/pitchStats";
+import { usePitchStats } from "@/lib/usePitchStats";
+import { useRecentBills } from "@/lib/useRecentBills";
+import type { PitchStats } from "@/lib/pitchStats";
 import { PersistentChipBoard } from "@/components/chipboard/PersistentChipBoard";
+import { MarketBoard, GtmBoard, FlywheelBoard } from "./CustomBoards";
+import { LiveTicker } from "./LiveTicker";
+
 import { SilentSectionTeam } from "./SilentSectionTeam";
 import { SilentSectionAsk } from "./SilentSectionAsk";
 import { MobileDeck } from "./MobileDeck";
@@ -12,18 +18,21 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const transition = { duration: 0.4, ease: [0.16, 1, 0.3, 1] as const };
 
-export function DeckPage() {
+// initialStats comes from the server pull in app/page.tsx. Both branches take it,
+// or mobile keeps the stale-first-paint behaviour desktop no longer has.
+export function DeckPage({ initialStats }: { initialStats?: PitchStats }) {
   const isMobile = useIsMobile();
-  if (isMobile) return <MobileDeck />;
+  if (isMobile) return <MobileDeck initialStats={initialStats} />;
 
-  return <DesktopDeck />;
+  return <DesktopDeck initialStats={initialStats} />;
 }
 
-function DesktopDeck() {
+function DesktopDeck({ initialStats }: { initialStats?: PitchStats }) {
   const { currentSection, subStep, tubeMode, next, prev } = useDeck();
   const cfg = SECTIONS[currentSection];
-  const liveStats = usePitchStats();
-  const state = withLiveProof(cfg.getState(subStep), liveStats);
+  const liveStats = usePitchStats(initialStats);
+  const recentBills = useRecentBills();
+  const state = withLiveProof(cfg.getState(subStep), liveStats, recentBills);
   const sectionKey = `${cfg.name}-${subStep}`;
 
   const isTeam = cfg.name === "team";
@@ -83,16 +92,28 @@ function DesktopDeck() {
       >
         {!isCustom && (
           <div className="absolute inset-0">
-            <PersistentChipBoard
-              chipStates={state.chipStates}
-              tubeMode={tubeMode}
-              opacity={state.boardOpacity}
-              showMarcatLogo={state.showMarcatLogo}
-              contentChips={state.contentChips}
-              onMarcatClick={next}
-            />
+            {state.customBoard === "market" ? (
+              <MarketBoard />
+            ) : state.customBoard === "gtm" ? (
+              <GtmBoard />
+            ) : state.customBoard === "flywheel" ? (
+              <FlywheelBoard />
+            ) : (
+              <PersistentChipBoard
+                chipStates={state.chipStates}
+                tubeMode={tubeMode}
+                opacity={state.boardOpacity}
+                showMarcatLogo={state.showMarcatLogo}
+                contentChips={state.contentChips}
+                onMarcatClick={next}
+              />
+            )}
           </div>
         )}
+        {/* Proof slide only — the one place where "these numbers are live" is the argument. */}
+        {/* Live bills now render inside the retailer card (see withLiveProof), so the
+            floating corner feed is gone. The badge stays: it timestamps the pull. */}
+        {cfg.name === "proof" && <LiveTicker stats={liveStats} />}
         {isTeam && <SilentSectionTeam />}
         {isAsk && <SilentSectionAsk />}
       </div>
@@ -110,7 +131,7 @@ function DesktopDeck() {
               className="text-center max-w-[1200px]"
             >
               {state.systemBand && (
-                <div className="font-mono text-[12px] md:text-[14px] uppercase tracking-[0.24em] text-marcat-orange mb-1">
+                <div className="font-mono text-[12px] md:text-[14px] uppercase tracking-[0.24em] text-marcat-orange mb-1 whitespace-pre-line">
                   {state.systemBand}
                 </div>
               )}

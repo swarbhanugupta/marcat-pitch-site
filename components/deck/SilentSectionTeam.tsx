@@ -9,11 +9,13 @@ export function SilentSectionTeam() {
         12 · TEAM
       </div>
       <h1 className="font-sans font-semibold text-[32px] md:text-[36px] leading-[1.05] tracking-[-0.02em] text-ink-strong mb-3 pointer-events-none">
-        Why now us?
+        Built from inside the problem.
       </h1>
+      {/* Comparative claim removed 2026-08-09 — "most founders never ran a store" invites
+          "how do you know?" about a set we can't evidence. Show the combination, don't compare. */}
       <div className="text-[13px] md:text-[14px] text-ink-body leading-snug text-center max-w-[720px] mb-6 pointer-events-none">
-        Most retail-software founders never ran a store. Most supermarket owners never built software.{" "}
-        <span className="text-ink-strong font-medium">We did both — that&apos;s why MarCat exists.</span>
+        We didn&apos;t design this for a supermarket.{" "}
+        <span className="text-ink-strong font-medium">We built it inside one.</span>
       </div>
 
       <div className="grid grid-cols-2 gap-10 max-w-[1000px] w-full pointer-events-none">
@@ -45,8 +47,7 @@ export function SilentSectionTeam() {
             Earlier: Bizom · Happay · Qoruz · 55+ B2B closes
           </div>
           <div className="text-[11px] text-ink-muted italic mt-2 max-w-[280px]">
-            Built a supermarket from scratch — then built MarCat to run it.
-            Sole engineer: 6 portals · 7 AI endpoints.
+            Built the operating system inside a live supermarket.
           </div>
         </div>
 
@@ -78,20 +79,25 @@ export function SilentSectionTeam() {
             Earlier: Intugine · B.Tech + MBA
           </div>
           <div className="text-[11px] text-ink-muted italic mt-2 max-w-[280px]">
-            Runs daily store ops + cashier training at the supermarket lab since 27 April 2026.
+            Runs daily store ops + cashier training at the supermarket lab.
           </div>
         </div>
       </div>
 
-      {/* First hires — single inline line */}
+      {/* First-hires line moved to S13 2026-08-09 — the Ask owns hiring. */}
       <div className="mt-6 pointer-events-none">
         <div className="font-mono text-[11px] uppercase tracking-widest text-ink-muted text-center">
-          First hires (this round): 2 field reps + engineer + CS  ·  50+ stores: sales scale-up
+          Operate → Observe → Build → Ship
         </div>
       </div>
 
-      <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-muted mt-4 italic pointer-events-none">
-        Code written and tested inside a live supermarket lab
+      {/* Two distinct dates, previously conflated into one. The supermarket opened
+          5 Jan 2025; MarCat went live inside it 27 Apr 2026 — 15 months of operating
+          BEFORE the software existed. That gap is the founder-market-fit argument,
+          and collapsing it into "since April 2026" threw the argument away. */}
+      <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-muted mt-4 pointer-events-none text-center">
+        Supermarket open since 5 Jan 2025
+        <span className="text-marcat-orange"> · MarCat live inside it since 27 Apr 2026</span>
       </div>
     </div>
   );

@@ -24,6 +24,9 @@ export interface ContentChipSpec {
   label: string;       // chip header
   lines: string[];     // body text lines
   tone: "error" | "benefit" | "neutral"; // determines color (red / orange / gray)
+  // Lines from this index render as a distinct group (orange, rule above). Set by
+  // withLiveProof so the live transaction rows don't blend into the aggregates.
+  accentFrom?: number;
 }
 
 export interface SectionState {
@@ -37,6 +40,9 @@ export interface SectionState {
   systemBand?: string;         // band between MarCat and bottom chips
   contentChips: ContentChipSpec[];
   bottomBand?: string;         // small text at viewport bottom
+  // Replaces the chip board in the middle zone for sections whose argument is not
+  // a four-participant structure (S07 market, S09 GTM, S10 flywheel).
+  customBoard?: "market" | "gtm" | "flywheel";
 }
 
 export interface SectionConfig {
@@ -76,7 +82,7 @@ const section1: SectionConfig = {
   getState: () => ({
     chipStates: DEFAULT_BOARD_STATE,
     boardOpacity: 1, showMarcatLogo: true,
-    headline: "The transaction layer for Indian FMCG.",
+    headline: "The shared transaction layer for Indian FMCG.",
     subHeadline: "One transaction. One shared operational state. Four participants acting from the same reality.",
     contentChips: [],
   }),
@@ -105,7 +111,7 @@ const section3: SectionConfig = {
       lines: insightDecisions[name],
       tone: "error" as const,
     })),
-    takeaway: "Four decisions, four datasets. Nobody acts on the same version of the transaction.",
+    takeaway: "The transaction is shared. The understanding isn't.",
   }),
 };
 
@@ -132,7 +138,7 @@ const section4: SectionConfig = {
       tone: "benefit" as const,
     })),
     systemBand: "FOUR INTERFACES · ONE DATABASE · ONE SHARED STATE",
-    takeaway: "Retailers reorder right, suppliers dispatch accurately, brands see demand live, consumers keep coming back. Two decisions synchronized today, four by design.",
+    takeaway: "Two decisions synchronized today, four by design.",
   }),
 };
 
@@ -144,15 +150,15 @@ const cascadeSteps: Record<typeof NODES[number], string[]> = {
   retailer: ["① STOCK UPDATES", "REPLENISHMENT LIVE"],
   supplier: ["② SUPPLIER PLANS", "ON REAL DEMAND"],
   brand:    ["③ SELL-OUT VISIBLE", "THE SAME DAY"],
-  consumer: ["④ CUSTOMER RETURNS", "THE LAYER REMEMBERS"],
+  consumer: ["④ LOYALTY TRAVELS", "THE LAYER REMEMBERS"],
 };
 const sectionFlow: SectionConfig = {
   index: 3, name: "how", totalSubSteps: 1,
   getState: () => ({
     chipStates: DEFAULT_BOARD_STATE, boardOpacity: 1, showMarcatLogo: true,
     eyebrow: "04 · HOW IT WORKS",
-    headline: "A single bill. Four businesses decide.",
-    subHeadline: "One ₹250 grocery bill isn't a sale — it's an information event. Replenishment, supplier planning, brand intelligence, and the reason a customer returns — all from one write.",
+    headline: "A single bill. Four decisions follow.",
+    subHeadline: "One ₹250 grocery bill isn't a sale — it's an information event. Replenishment, distributor planning, brand intelligence, and loyalty that travels.",
     contentChips: NODES.map((name) => ({
       peripheral: name, pinPair: 2 as const,
       side: SIDE[name],
@@ -160,8 +166,8 @@ const sectionFlow: SectionConfig = {
       lines: cascadeSteps[name],
       tone: "benefit" as const,
     })),
-    systemBand: "₹250 BILL → STOCK → DEMAND → SELL-OUT → LOYALTY → AI REORDER → EVERY FUTURE DECISION SHARPER",
-    takeaway: "One write. Reused by four businesses. Every future decision sharper than the last.",
+    systemBand: "₹250 BILL → STOCK → DEMAND → SELL-OUT → LOYALTY",
+    takeaway: "One write. Reused by four participants.",
     bottomBand: "Operational intelligence = inventory truth + demand visibility + sell-out visibility, from one transaction   ·   Retailer + consumer LIVE today · Brand + supplier built",
   }),
 };
@@ -184,14 +190,14 @@ const sectionProof: SectionConfig = {
       lines: {
         retailer: proofRetailerLines(FALLBACK_STATS),
         consumer: proofConsumerLines(FALLBACK_STATS),
-        supplier: ["BUILT · NOT YET LIVE", "1ST SUPPLIER NEXT", "—"],
-        brand:    ["BUILT · NOT YET LIVE", "1ST BRAND PILOT NEXT", "—"],
+        supplier: ["BUILT · NOT YET LIVE", "1ST DISTRIBUTOR NEXT"],
+        brand:    ["BUILT · NOT YET LIVE", "1ST BRAND PILOT NEXT"],
       }[name],
       tone: "benefit" as const,
     })),
     systemBand: proofSystemBand(FALLBACK_STATS),
-    takeaway: "We start as the operating system for independent supermarkets. Every new supermarket makes every synchronized transaction more valuable. The demand test is what we raise for.",
-    bottomBand: "Banjara is our first customer and our lab — every feature ships here first   ·   captive R&D lab, not a paying customer",
+    takeaway: "The demand test is what we raise for.",
+    bottomBand: "Captive R&D lab, not a paying customer   ·   proof the software runs on real retail transactions, not proof of demand",
   }),
 };
 
@@ -202,7 +208,7 @@ const sectionWhyNow: SectionConfig = {
     chipStates: DEFAULT_BOARD_STATE, boardOpacity: 1, showMarcatLogo: true,
     eyebrow: "06 · WHY NOW",
     headline: "Why this is inevitable now.",
-    subHeadline: "MarCat isn't a new behavior. Supermarkets already generate the data, suppliers already visit them, brands already pay to understand them, consumers already shop there. We connect what already happens.",
+    subHeadline: "MarCat isn't a new behavior. We connect what already happens.",
     contentChips: NODES.map((name) => ({
       peripheral: name, pinPair: 0 as const,
       side: SIDE[name],
@@ -227,21 +233,16 @@ const section5: SectionConfig = {
     chipStates: DEFAULT_BOARD_STATE, boardOpacity: 1, showMarcatLogo: true,
     eyebrow: "07 · MARKET",
     headline: "We sell cities, not India.",
-    subHeadline: "Each metro holds thousands of GST-billing kiranas + hundreds of FMCG suppliers — every one a node. Density math, not TAM theatre.",
-    contentChips: NODES.map((name) => ({
-      peripheral: name, pinPair: 2 as const,
-      side: SIDE[name],
-      label: DISPLAY_LABEL[name],
-      lines: {
-        brand:    ["TAM  ₹2,500 CR", "SAM  ₹600 CR", "SOM  ₹5–6 CR"],
-        supplier: ["TAM  ₹1,000 CR", "SAM  ₹250 CR", "SOM  ₹4–5 CR"],
-        retailer: ["TAM  ₹2,250 CR", "SAM  ₹450 CR", "SOM  ₹2–3 CR"],
-        consumer: ["PHASE 3+ OPTIONALITY", "SAM ₹0 (3-YR)", "SOM ₹0 (3-YR)"],
-      }[name],
-      tone: "neutral" as const,
-    })),
-    takeaway: "Y3: ₹70L per metro (retailer + supplier) · ₹5.7 Cr brand-side national · ~₹13 Cr total ARR across the transaction layer.",
-    bottomBand: "Out of scope: quick commerce + large modern trade chains",
+    subHeadline: "We don't need the market to be huge. We need to prove the model in the stores that fit it.",
+    // TAM/SAM/SOM removed 2026-08-09. ₹2,250 Cr implied 15 lakh billing counters;
+    // GoFrugal, ~20 yrs in this segment, reports 8,000 implementations. Brand and
+    // distributor TAM had no defined product or price behind them.
+    // Interim copy treatment — bespoke 3-number layout (SilentSectionMarket) still queued.
+    contentChips: [],
+    customBoard: "market",
+    // No takeaway: the board now shows 15–25 at 76px. A line repeating it would be
+    // narrating the picture — the failure removed from S02, S03, S06 and S08.
+    bottomBand: "Source: SmartScrapers directory data, 1 April 2026   ·   out of scope: quick commerce + large modern trade chains",
   }),
 };
 
@@ -251,8 +252,7 @@ const section6: SectionConfig = {
   getState: () => ({
     chipStates: DEFAULT_BOARD_STATE, boardOpacity: 1, showMarcatLogo: true,
     eyebrow: "08 · LANDSCAPE",
-    headline: "Each layer has its tools.",
-    subHeadline: "Every tool optimizes one participant. None synchronize all four.",
+    headline: "Each participant has its tools.",
     contentChips: NODES.map((name) => ({
       peripheral: name, pinPair: 3 as const,
       side: SIDE[name],
@@ -260,13 +260,15 @@ const section6: SectionConfig = {
       lines: {
         brand:    ["NIELSENIQ · PANELS", "KANTAR · PANELS"],
         supplier: ["BIZOM · SFA", "FIELDASSIST · SFA"],
-        retailer: ["MARG · DESKTOP ERP", "VYAPAR · TALLY"],
-        consumer: ["KHATABOOK · LEDGER", "BLINKIT · 10-MIN QC"],
+        retailer: ["MARG · DESKTOP ERP", "VYAPAR · TALLY · POS", "KHATABOOK · PETPOOJA"],
+        consumer: ["BLINKIT · 10-MIN QC"],
       }[name],
       tone: "neutral" as const,
     })),
-    takeaway: "Bolting it on is materially harder than it looks: their systems were designed to optimize a participant — retrofitting a shared transaction across all four is a re-architecture, not a feature.",
-    bottomBand: "Each layer: well-served by existing tools   ·   the connecting layer: empty",
+    // "Bolting it on…" removed 2026-08-09 — S10 owns defensibility. Claiming
+    // incumbents *can't* build it volunteers a burden of proof this slide doesn't need.
+    takeaway: "Every tool optimizes one participant. None synchronize all four.",
+    bottomBand: "Each participant: well-served by existing tools   ·   the connecting layer: empty",
   }),
 };
 
@@ -277,21 +279,14 @@ const section7: SectionConfig = {
     chipStates: DEFAULT_BOARD_STATE, boardOpacity: 1, showMarcatLogo: true,
     eyebrow: "09 · GTM",
     headline: "We don't build a sales engine. We ride India's distribution.",
-    subHeadline: "The supermarket joins for better operations. Everyone else joins because the supermarket already did.",
-    contentChips: NODES.map((name) => ({
-      peripheral: name, pinPair: 0 as const,
-      side: SIDE[name],
-      label: DISPLAY_LABEL[name],
-      lines: {
-        brand:    ["SELL-OUT BECOMES", "VISIBLE · BUILT"],
-        supplier: ["END BLIND DISPATCH", "· BUILT"],
-        retailer: ["OPS IMPROVE DAY ONE", "· LIVE"],
-        consumer: ["STORE GOES DIGITAL", "· LIVE"],
-      }[name],
-      tone: "benefit" as const,
-    })),
-    takeaway: "Store #1 live → suppliers gain visibility → 5 founder-led stores → brands gain sell-out → the plan we're raising to run.",
-    bottomBand: "Beachhead: 1 store → 5 founder-led → 15–25 paid across Ahmedabad (18–24 mo)",
+    subHeadline: "Start founder-led. Then follow the relationships already serving these stores.",
+    // Four participant benefit chips removed 2026-08-09 — S03 already established
+    // participant outcomes; S09's job is acquisition, not product value.
+    // Interim copy treatment — bespoke funnel layout still queued.
+    contentChips: [],
+    customBoard: "gtm",
+    takeaway: "The raise proves the channel — not the network effect.",
+    // Beachhead band removed: the board now draws the same sequence.
   }),
 };
 
@@ -301,22 +296,15 @@ const section8: SectionConfig = {
   getState: () => ({
     chipStates: DEFAULT_BOARD_STATE, boardOpacity: 1, showMarcatLogo: true,
     eyebrow: "10 · MOAT",
-    headline: "Everyone owns one layer. We own two.",
-    subHeadline: "The flywheel is coordination, not software: more stores → more synchronized transactions → sharper shared intelligence → more valuable for every participant → more participants.",
-    contentChips: NODES.map((name) => ({
-      peripheral: name, pinPair: 0 as const,
-      side: SIDE[name],
-      label: DISPLAY_LABEL[name],
-      lines: {
-        brand:    ["60-SEC SELL-OUT FEED", "PANELS = 6–8 WK LAG"],
-        supplier: ["LIVE RETAILER STOCK", "BEAT-BY-MEMORY DEAD"],
-        retailer: ["ONE OS, FIVE REPLACED", "DATA LIVES HERE"],
-        consumer: ["CROSS-STORE KHATA", "PIN-CODE GRAPH OWNED"],
-      }[name],
-      tone: "benefit" as const,
-    })),
-    takeaway: "Incumbents built software for participants. We build infrastructure for the transaction. Every participant added makes the layer more valuable for everyone already connected.",
-    bottomBand: "L1 RETAILER OS (live) · L2 SUPPLIER DMS · L3 BRAND INTELLIGENCE · L4 CREDIT & FULFILMENT\nEvery synchronized transaction increases the value of the next one",
+    headline: "Incumbents built software for participants. We build infrastructure for the transaction.",
+    subHeadline: "One transaction becomes more useful as more participants can act on it.",
+    // Four moat chips removed 2026-08-09 — all asserted the moat rather than showing it,
+    // and CROSS-STORE KHATA is disproved by S05 (one live store).
+    // The flywheel below shows the mechanism instead. No 🟢/🔵 markers on it:
+    // marking a mechanism as live would turn it into a claim.
+    contentChips: [],
+    customBoard: "flywheel",
+    bottomBand: "EXPANSION PATH — 🟢 RETAILER OS · 🔵 DISTRIBUTOR · 🔵 BRAND · 🔵 CREDIT & FULFILMENT",
   }),
 };
 
@@ -326,19 +314,27 @@ const section9: SectionConfig = {
   getState: () => ({
     chipStates: DEFAULT_BOARD_STATE, boardOpacity: 1, showMarcatLogo: true,
     eyebrow: "11 · REVENUE",
-    headline: "How the layer monetizes.",
-    subHeadline: "One supermarket → software revenue → supplier joins → brand intelligence unlocks → network services unlock.",
-    contentChips: (["retailer", "consumer"] as const).map((name) => ({
+    headline: "How we charge.",
+    // Future-revenue enumeration removed 2026-08-09 (subhead + bottom band named five
+    // undefined lines: supplier, brand intelligence, credit, retail media, fulfilment).
+    // S10's EXPANSION PATH carries the "will make money" half. One payer, two mechanisms:
+    // ₹1/WhatsApp is billed to the RETAILER, not the consumer — consumer box removed.
+    contentChips: (["retailer"] as const).map((name) => ({
       peripheral: name, pinPair: 1 as const,
-      side: ({ retailer: "right", consumer: "right" } as const)[name],
+      side: "right" as const,
       label: DISPLAY_LABEL[name],
-      lines: name === "retailer"
-        ? ["FREE MOBILE · 1 SLOT", "PRO · ₹15K / PC / YR", "+ ₹1 / WHATSAPP MSG"]
-        : ["FREE TODAY", "PHASE 4+ MONETIZATION"],
+      // 4 short lines, not 3 long ones: the card is 400px wide at 22px mono ≈ 27 chars,
+      // and "PRO · ₹15,000 / PC / YR · VOLUME DISCOUNT 2+" (43) overflowed the box.
+      lines: [
+        "FREE MOBILE · 1 SLOT",
+        "PRO · ₹15,000 / PC / YR",
+        "VOLUME DISCOUNT 2+ PCS",
+        "+ ₹1 / WHATSAPP MSG",
+      ],
       tone: "benefit" as const,
     })),
-    takeaway: "Free tools build the coordination layer. The brand side monetizes it. Asset-light, software-only.",
-    bottomBand: "Today: retailer software · As density grows: supplier + brand intelligence · Future: credit · retail media · fulfilment\nComparable: Vyapar ₹3-7K · Marg ₹8-15K · Petpooja ₹10-12K · Pro ₹15K",
+    takeaway: "Asset-light. Software-only.",
+    bottomBand: "EXISTING RETAIL SOFTWARE PRICE RANGE — Vyapar ₹3–7K · Marg ₹8–15K · Petpooja ₹8,500 flat",
   }),
 };
 
@@ -368,10 +364,13 @@ const section11: SectionConfig = {
 const section12: SectionConfig = {
   index: 13, name: "thanks", totalSubSteps: 1,
   getState: () => ({
-    chipStates: allLive, boardOpacity: 1, showMarcatLogo: true,
+    // allLive → DEFAULT_BOARD_STATE 2026-08-09. Eight slides teach the reader 🟢/🔵;
+    // showing four green nodes on the final frame retracted that at the point of
+    // maximum recall. The close should be the most trustworthy frame, not the most optimistic.
+    chipStates: DEFAULT_BOARD_STATE, boardOpacity: 1, showMarcatLogo: true,
     eyebrow: "14 · CLOSE",
-    headline: "One supermarket is live. The next one makes every participant smarter.",
-    subHeadline: "MarCat — the neural network for Indian FMCG retail.",
+    headline: "One supermarket is live. Every transaction makes the next one more valuable.",
+    subHeadline: "MarCat — the shared transaction layer for Indian FMCG.",
     contentChips: [],
     takeaway: "Visit the lab · Email swarbhanu@marcat.in · Download the deck ↓",
   }),

@@ -259,6 +259,7 @@ export function PersistentChipBoard({
             tone={spec.tone}
             pinSide={layout.contentSide}
             pinTips={pinTips}
+            accentFrom={spec.accentFrom}
           />
         );
       })}

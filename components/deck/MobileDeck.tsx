@@ -2,27 +2,29 @@
 
 import Image from "next/image";
 import { SECTIONS } from "@/lib/sections-config";
-import { usePitchStats, withLiveProof } from "@/lib/pitchStats";
+import { withLiveProof } from "@/lib/pitchStats";
+import { usePitchStats } from "@/lib/usePitchStats";
+import { useRecentBills } from "@/lib/useRecentBills";
+import type { PitchStats } from "@/lib/pitchStats";
 import { MobileContentCard } from "./MobileContentCard";
+import { MarketBoard, GtmBoard, FlywheelBoard } from "./CustomBoards";
 import { PersistentChipBoard } from "@/components/chipboard/PersistentChipBoard";
 import { DEFAULT_BOARD_STATE } from "@/lib/tokens";
-import type { ChipName, ChipState } from "@/lib/tokens";
 
-const allLive: Record<ChipName, ChipState> = {
-  marcat: "live", brand: "live", consumer: "live", supplier: "live", retailer: "live",
-};
+
 
 /**
  * Mobile-native scrollable deck. All 11 sections rendered as vertical-scroll
  * page cards. Each section has stacked content (no chip board geometry
  * dependency except the hero). Uses HTML for crisp text rendering.
  */
-export function MobileDeck() {
-  const liveStats = usePitchStats();
+export function MobileDeck({ initialStats }: { initialStats?: PitchStats }) {
+  const liveStats = usePitchStats(initialStats);
+  const recentBills = useRecentBills();
   return (
     <main className="min-h-screen w-full bg-canvas-white">
       {SECTIONS.map((cfg, idx) => {
-        const state = withLiveProof(cfg.getState(0), liveStats);
+        const state = withLiveProof(cfg.getState(0), liveStats, recentBills);
         return (
           <section
             key={cfg.name}
@@ -67,6 +69,16 @@ export function MobileDeck() {
               </div>
             )}
 
+            {/* Custom boards — same components desktop uses, so mobile doesn't
+                silently keep the bare-board version of S07/S09/S10. */}
+            {state.customBoard && (
+              <div className="my-6 min-h-[300px]">
+                {state.customBoard === "market" && <MarketBoard />}
+                {state.customBoard === "gtm" && <GtmBoard />}
+                {state.customBoard === "flywheel" && <FlywheelBoard />}
+              </div>
+            )}
+
             {cfg.name === "team" && <MobileTeam />}
             {cfg.name === "ask" && <MobileAsk />}
             {cfg.name === "thanks" && <MobileClose />}
@@ -82,7 +94,7 @@ export function MobileDeck() {
 
             {/* System band */}
             {state.systemBand && (
-              <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-marcat-orange leading-relaxed mt-4">
+              <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-marcat-orange leading-relaxed mt-4 whitespace-pre-line">
                 {state.systemBand}
               </div>
             )}
@@ -135,7 +147,7 @@ function MobileTeam() {
           Earlier: Bizom · Happay · Qoruz · 55+ B2B closes
         </div>
         <div className="text-[11px] text-ink-muted italic mt-2 px-4">
-          Built a supermarket from scratch — then built MarCat to run it. Sole engineer: 6 portals · 7 AI endpoints.
+          Built the operating system inside a live supermarket.
         </div>
       </div>
       <div className="text-center">
@@ -157,11 +169,15 @@ function MobileTeam() {
           Earlier: Intugine · B.Tech + MBA
         </div>
         <div className="text-[11px] text-ink-muted italic mt-2 px-4">
-          Runs daily store ops + cashier training at the supermarket lab since 27 April 2026.
+          Runs daily store ops + cashier training at the supermarket lab.
         </div>
       </div>
       <div className="font-mono text-[10px] uppercase tracking-widest text-ink-muted text-center pt-4 border-t border-line">
-        First hires (this round): 2 field reps + engineer + CS  ·  50+ stores: sales scale-up
+        Operate → Observe → Build → Ship
+        <div className="mt-1">
+          Supermarket open since 5 Jan 2025
+          <span className="text-marcat-orange"> · MarCat live inside it since 27 Apr 2026</span>
+        </div>
       </div>
     </div>
   );
@@ -170,8 +186,8 @@ function MobileTeam() {
 function MobileAsk() {
   return (
     <div className="space-y-6 my-4">
-      <div className="text-center font-mono text-[12px] text-ink-body mb-1">
-        Pre-seed · SAFE · 18–24-mo runway
+      <div className="text-center font-sans text-[13px] text-ink-body mb-1">
+        One store proves the system. Multiple stores prove the model.
       </div>
       <div className="flex justify-around items-start gap-4">
         <div className="text-center">
@@ -192,13 +208,16 @@ function MobileAsk() {
         </div>
       </div>
       <div className="border-t border-line pt-4">
-        <div className="font-mono text-[10px] uppercase tracking-widest text-ink-muted mb-3 text-center">
-          MILESTONE: SELL-OUT LOOP LIVE · REPEATABLE PAID ACQUISITION · EARLY MONETIZATION
+        <div className="font-mono text-[10px] uppercase tracking-widest text-ink-muted mb-1 text-center">
+          PROOF TARGET · 15–25 PAYING STORES · AHMEDABAD · 24 MONTHS FROM CLOSE
+        </div>
+        <div className="font-mono text-[10px] uppercase tracking-widest text-marcat-orange mb-3 text-center">
+          VALIDATION ROUND · NOT A REVENUE FORECAST
         </div>
         <div className="grid grid-cols-3 gap-2 text-center font-mono text-[11px]">
           <div>
             <div className="text-ink-strong font-bold">ENGINEERING</div>
-            <div className="text-ink-muted mt-1">sell-out loop</div>
+            <div className="text-ink-muted mt-1">repeatable deploy</div>
           </div>
           <div>
             <div className="text-ink-strong font-bold">FIELD GTM</div>
@@ -211,7 +230,8 @@ function MobileAsk() {
         </div>
       </div>
       <p className="text-[13px] text-ink-body italic leading-relaxed text-center px-2">
-        Self-sufficient raise — grants are upside, not counted. Already live at the lab; this funds repeatable retailer adoption.
+        Self-sufficient raise — grants treated as upside, not counted.<br />
+        Pre-seed SAFE · 18–24 months runway · ₹7 Cr cap
       </p>
     </div>
   );
@@ -221,8 +241,10 @@ function MobileClose() {
   return (
     <div className="my-4">
       <div className="w-full" style={{ aspectRatio: "1 / 0.95" }}>
+        {/* allLive → DEFAULT_BOARD_STATE 2026-08-09, matching desktop S14. Showing four
+            green nodes on the final frame retracted the 🟢/🔵 discipline of the whole deck. */}
         <PersistentChipBoard
-          chipStates={allLive}
+          chipStates={DEFAULT_BOARD_STATE}
           tubeMode="flowing"
           showMarcatLogo
           viewBoxOverride="430 100 1140 750"
